@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/SFX_TST_D.wav-5338c217b6b82d02f006a6d323359a2e.sample"
+
+[deps]
+
+source_file="res://Audio/SFX_TST_D.wav"
+dest_files=[ "res://.import/SFX_TST_D.wav-5338c217b6b82d02f006a6d323359a2e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=true
+force/max_rate=false
+force/max_rate_hz=48000.0
+edit/trim=false
+edit/normalize=true
+edit/loop=false
+compress/mode=0

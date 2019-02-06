@@ -1,11 +1,16 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Level.gd" type="Script" id=1]
 [ext_resource path="res://Spawner.gd" type="Script" id=2]
 [ext_resource path="res://Instruction.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Detector.gd" type="Script" id=4]
 [ext_resource path="res://Sprites/press_zone.png" type="Texture" id=5]
-[ext_resource path="res://CustomResources/FiraCode-Regular-16.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Audio/TVJam_V02.wav" type="AudioStream" id=6]
+[ext_resource path="res://Audio/SFX_TST_A.wav" type="AudioStream" id=7]
+[ext_resource path="res://Audio/SFX_TST_S.wav" type="AudioStream" id=8]
+[ext_resource path="res://Audio/SFX_TST_D.wav" type="AudioStream" id=9]
+[ext_resource path="res://Audio/SFX_TST_F.wav" type="AudioStream" id=10]
+[ext_resource path="res://CustomResources/FiraCode-Regular-16.tres" type="DynamicFont" id=11]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -19,10 +24,13 @@ debug = true
 
 [node name="Spawner" type="Node2D" parent="." index="0"]
 
-position = Vector2( 500, -50 )
+position = Vector2( 502.661, 31.8746 )
 script = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 instruction_type = ExtResource( 3 )
+MX_BPM = 98.0
+Time = 6
+Measure = 8
 
 [node name="Timer" type="Timer" parent="Spawner" index="0"]
 
@@ -33,12 +41,11 @@ autostart = true
 
 [node name="Target" type="Position2D" parent="Spawner" index="1"]
 
-position = Vector2( 0, 680 )
+position = Vector2( -2.16925, 644.436 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Detector" type="Node2D" parent="." index="1"]
 
-editor/display_folded = true
 position = Vector2( 500, 500 )
 script = ExtResource( 4 )
 _sections_unfolded = [ "Transform" ]
@@ -71,6 +78,59 @@ __meta__ = {
 scale = Vector2( 3.3, 3.3 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="MX" type="AudioStreamPlayer" parent="Detector" index="2"]
+
+stream = ExtResource( 6 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="A" type="AudioStreamPlayer2D" parent="Detector" index="3"]
+
+stream = ExtResource( 7 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="S" type="AudioStreamPlayer2D" parent="Detector" index="4"]
+
+stream = ExtResource( 8 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="D" type="AudioStreamPlayer2D" parent="Detector" index="5"]
+
+stream = ExtResource( 9 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="F" type="AudioStreamPlayer2D" parent="Detector" index="6"]
+
+stream = ExtResource( 10 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
 [node name="Debug" type="Control" parent="." index="2"]
 
@@ -105,7 +165,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 11 )
 text = "Goal placeholder"
 percent_visible = 1.0
 lines_skipped = 0
@@ -128,7 +188,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 11 )
 text = "Input placeholder"
 percent_visible = 1.0
 lines_skipped = 0

@@ -6,6 +6,8 @@ var d_goal
 var d_input
 var current_letter
 var current_checked
+var is_playing = false
+var SFX
 
 func _ready():
 	on_area = false
@@ -18,20 +20,28 @@ func _process(delta):
 	if spawner.eval_array.size() > 0:
 		current_letter = spawner.eval_array[0].letter
 		d_goal.text = "Evaluando " + current_letter
+		if is_playing == false:
+			$MX.play()
+			is_playing = true
 		match current_letter:
 			"A":
 				check_press(KEY_A)
+				SFX = $A
 			"S":
 				check_press(KEY_S)
+				SFX = $S
 			"D":
 				check_press(KEY_D)
+				SFX = $D
 			"F":
 				check_press(KEY_F)
+				SFX = $F
 
 func check_press(key_code):
 	if Input.is_key_pressed(key_code) and not current_checked:
 		current_checked = true
 		if on_area:
+			SFX.play()
 			spawner.eval_array[0].get_node("Sprite").modulate = Color("7bccc4")
 			d_input.text = "Buena malparido. Buena."
 		else:

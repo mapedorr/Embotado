@@ -2,11 +2,17 @@ extends Node2D
 
 export (PackedScene) var instruction_type
 
+export (float) var MX_BPM
+export (int) var Time
+export (int) var Measure
+
 var eval_array
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	eval_array = []
+	$Timer.wait_time = (60*(Time))/MX_BPM/2
+	print ($Timer.wait_time)
 	pass
 
 func _on_Timer_timeout():

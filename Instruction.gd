@@ -1,6 +1,8 @@
 extends Node2D
 
-export(float) var tween_duration = 10
+export(float) var MX_BPM
+
+var tween_duration
 
 var movement_target
 var letter
@@ -10,6 +12,10 @@ const SPRITES_PATH = "res://Sprites/tile%s.png"
 
 # Called when the node is added to the scene for the first time.
 func _ready():
+	
+	tween_duration = 5 #(60*1)/MX_BPM
+	
+	
 	self.visible = true
 
 # Called after the Node is instantiated by Level/Spawner
