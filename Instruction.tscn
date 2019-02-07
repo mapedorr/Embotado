@@ -17,7 +17,7 @@ MX_BPM = 98.0
 
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Transform", "Z Index" ]
+_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
 [node name="Tween" type="Tween" parent="." index="1"]
 
@@ -30,6 +30,7 @@ playback/speed = 1.0
 
 [node name="Area2D" type="Area2D" parent="." index="2"]
 
+editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -37,6 +38,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 

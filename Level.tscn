@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Level.gd" type="Script" id=1]
 [ext_resource path="res://Spawner.gd" type="Script" id=2]
@@ -10,7 +10,8 @@
 [ext_resource path="res://Audio/SFX_TST_S.wav" type="AudioStream" id=8]
 [ext_resource path="res://Audio/SFX_TST_D.wav" type="AudioStream" id=9]
 [ext_resource path="res://Audio/SFX_TST_F.wav" type="AudioStream" id=10]
-[ext_resource path="res://CustomResources/FiraCode-Regular-16.tres" type="DynamicFont" id=11]
+[ext_resource path="res://Debug.gd" type="Script" id=11]
+[ext_resource path="res://CustomResources/FiraCode-Regular-16.tres" type="DynamicFont" id=12]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -24,6 +25,7 @@ debug = true
 
 [node name="Spawner" type="Node2D" parent="." index="0"]
 
+editor/display_folded = true
 position = Vector2( 502.661, 31.8746 )
 script = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
@@ -61,6 +63,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Area2D" type="Area2D" parent="Detector" index="1"]
 
+editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -73,13 +76,22 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Area2D" index="0"]
+[node name="Shape" type="CollisionShape2D" parent="Detector/Area2D" index="0"]
 
 scale = Vector2( 3.3, 3.3 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="MX" type="AudioStreamPlayer" parent="Detector" index="2"]
+[node name="Center" type="Line2D" parent="Detector" index="2"]
+
+points = PoolVector2Array( 0, 0, 0, 0 )
+width = 2.0
+default_color = Color( 0.4, 0.5, 1, 0 )
+sharp_limit = 2.0
+round_precision = 8
+_sections_unfolded = [ "Transform" ]
+
+[node name="MX" type="AudioStreamPlayer" parent="Detector" index="3"]
 
 stream = ExtResource( 6 )
 volume_db = 0.0
@@ -88,7 +100,7 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="A" type="AudioStreamPlayer2D" parent="Detector" index="3"]
+[node name="A" type="AudioStreamPlayer2D" parent="Detector" index="4"]
 
 stream = ExtResource( 7 )
 volume_db = 0.0
@@ -99,7 +111,7 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="S" type="AudioStreamPlayer2D" parent="Detector" index="4"]
+[node name="S" type="AudioStreamPlayer2D" parent="Detector" index="5"]
 
 stream = ExtResource( 8 )
 volume_db = 0.0
@@ -110,7 +122,7 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="D" type="AudioStreamPlayer2D" parent="Detector" index="5"]
+[node name="D" type="AudioStreamPlayer2D" parent="Detector" index="6"]
 
 stream = ExtResource( 9 )
 volume_db = 0.0
@@ -121,7 +133,7 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="F" type="AudioStreamPlayer2D" parent="Detector" index="6"]
+[node name="F" type="AudioStreamPlayer2D" parent="Detector" index="7"]
 
 stream = ExtResource( 10 )
 volume_db = 0.0
@@ -134,7 +146,6 @@ area_mask = 1
 
 [node name="Debug" type="Control" parent="." index="2"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -145,6 +156,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+script = ExtResource( 11 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -165,7 +177,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 11 )
+custom_fonts/font = ExtResource( 12 )
 text = "Goal placeholder"
 percent_visible = 1.0
 lines_skipped = 0
@@ -188,7 +200,30 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 11 )
+custom_fonts/font = ExtResource( 12 )
+text = "Input placeholder"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="RayCast" type="Label" parent="Debug" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 556.0
+margin_top = 446.0
+margin_right = 806.0
+margin_bottom = 466.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 12 )
 text = "Input placeholder"
 percent_visible = 1.0
 lines_skipped = 0
