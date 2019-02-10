@@ -73,7 +73,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angle", "Angular Velocity", "Color", "Emission Shape", "Gravity", "Initial Velocity", "Linear Accel", "Scale", "Spread", "Trail" ]
 
-[node name="Instruction" type="Node2D" index="0"]
+[node name="Instruction" type="Node2D"]
 
 script = ExtResource( 1 )
 MX_BPM = 98.0
