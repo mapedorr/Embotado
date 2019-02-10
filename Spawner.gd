@@ -2,6 +2,7 @@ extends Node2D
 
 export (PackedScene) var instruction_type
 
+
 export (float) var MX_BPM
 export (int) var Time
 export (int) var Measure

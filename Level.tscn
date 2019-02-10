@@ -25,8 +25,7 @@ debug = true
 
 [node name="Spawner" type="Node2D" parent="." index="0"]
 
-editor/display_folded = true
-position = Vector2( 502.661, 31.8746 )
+position = Vector2( 500, 48.8746 )
 script = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 instruction_type = ExtResource( 3 )
@@ -43,7 +42,7 @@ autostart = true
 
 [node name="Target" type="Position2D" parent="Spawner" index="1"]
 
-position = Vector2( -2.16925, 644.436 )
+position = Vector2( -2.16925, 615.436 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Detector" type="Node2D" parent="." index="1"]
@@ -58,8 +57,9 @@ __meta__ = {
 [node name="Sprite" type="Sprite" parent="Detector" index="0"]
 
 scale = Vector2( 0.5, 0.5 )
+z_index = -2
 texture = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="Area2D" type="Area2D" parent="Detector" index="1"]
 
@@ -87,6 +87,7 @@ _sections_unfolded = [ "Transform" ]
 points = PoolVector2Array( 0, 0, 0, 0 )
 width = 2.0
 default_color = Color( 0.4, 0.5, 1, 0 )
+texture_mode = 150339601
 sharp_limit = 2.0
 round_precision = 8
 _sections_unfolded = [ "Transform" ]
@@ -146,6 +147,7 @@ area_mask = 1
 
 [node name="Debug" type="Control" parent="." index="2"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
