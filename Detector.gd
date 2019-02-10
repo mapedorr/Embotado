@@ -13,13 +13,21 @@ var instruction_area
 var on_center
 
 func _ready():
+	# Called when the node is added to the scene for the first time.
 	on_area = false
 	on_center = false
-	spawner = get_node("../Spawner")
-	dbg = get_node("../Debug")
+	spawner = $"../Spawner"
+	dbg = $"../Debug"
 	current_checked = false
+	
+	dbg.label("Goal", "")
+	dbg.label("Input", "")
 
 func _process(delta):
+	if is_playing == false:
+		$MX.play()
+		spawner.get_node("Metronome").start()
+		is_playing = true
 	if on_area:
 		# check if the Instruction is centered
 		$Center.points[1] = self.to_local(instruction_area.global_position)
@@ -30,9 +38,6 @@ func _process(delta):
 	if spawner.eval_array.size() > 0:
 		current_letter = spawner.eval_array[0].letter
 		dbg.label("Goal", "Evaluando " + current_letter)
-		if is_playing == false:
-			$MX.play()
-			is_playing = true
 		match current_letter:
 			"A":
 				check_press(KEY_A)
