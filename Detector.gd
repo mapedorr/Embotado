@@ -15,9 +15,6 @@ var dbg
 var instruction_area
 var on_center
 
-
-
-
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	on_area = false
@@ -67,15 +64,15 @@ func check_press(key_code):
 				# TODO: play something special?
 				var ExpPart = Explosion.instance()
 				add_child(ExpPart)
+				ExpPart.emitting = true
 				instruction_area.get_node("../Sprite").set_scale(Vector2(0.4, 0.4))
-				pass
 			SFX.play()
 			spawner.eval_array[0].get_node("Sprite").modulate = Color("7bccc4")
 			dbg.label("Input", "Buena malparido. Buena.")
 		else:
 			spawner.eval_array[0].get_node("Sprite").modulate = Color("b84042")
 			dbg.label("Input", "¡Qué piró tan bobo!")
-		spawner.eval_array[0].get_node("Area2D").queue_free()
+		# spawner.eval_array[0].get_node("Area2D").queue_free()
 
 func _on_Area2D_area_entered(area):
 	instruction_area = area
