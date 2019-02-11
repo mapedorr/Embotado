@@ -1,162 +1,52 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Level.gd" type="Script" id=1]
-[ext_resource path="res://Spawner.gd" type="Script" id=2]
-[ext_resource path="res://Instruction.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Detector.gd" type="Script" id=4]
-[ext_resource path="res://Sprites/press_zone.png" type="Texture" id=5]
-[ext_resource path="res://Audio/TVJam_V02.wav" type="AudioStream" id=6]
-[ext_resource path="res://Audio/SFX_TST_A.wav" type="AudioStream" id=7]
-[ext_resource path="res://Audio/SFX_TST_S.wav" type="AudioStream" id=8]
-[ext_resource path="res://Audio/SFX_TST_D.wav" type="AudioStream" id=9]
-[ext_resource path="res://Audio/SFX_TST_F.wav" type="AudioStream" id=10]
-[ext_resource path="res://Debug.gd" type="Script" id=11]
-[ext_resource path="res://CustomResources/FiraCode-Regular-16.tres" type="DynamicFont" id=12]
-
-[sub_resource type="CircleShape2D" id=1]
-
-custom_solver_bias = 0.0
-radius = 10.0
+[ext_resource path="res://CustomResources/FiraCode-Regular-32.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Character/Character.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Debug.gd" type="Script" id=4]
+[ext_resource path="res://CustomResources/FiraCode-Regular-16.tres" type="DynamicFont" id=5]
 
 [node name="Level" type="Node" index="0"]
 
 script = ExtResource( 1 )
 debug = true
 
-[node name="Spawner" type="Node2D" parent="." index="0"]
+[node name="Score" type="Label" parent="." index="0"]
 
-editor/display_folded = true
-position = Vector2( 500, 48.8746 )
-script = ExtResource( 2 )
-_sections_unfolded = [ "Material", "Transform", "Visibility" ]
-instruction_type = ExtResource( 3 )
-MX_BPM = 98.0
-Time = 6
-Measure = 8
-notes = [ 1, 9, 21, 63, 5, 0 ]
+anchor_left = 0.5
+anchor_top = 0.0
+anchor_right = 0.5
+anchor_bottom = 0.0
+margin_left = -95.0
+margin_top = 32.0
+margin_right = 95.0
+margin_bottom = 71.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 2 )
+text = "SCORE = 00"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Grow Direction", "custom_fonts" ]
 
-[node name="Metronome" type="Timer" parent="Spawner" index="0"]
+[node name="Panda" parent="." index="1" instance=ExtResource( 3 )]
 
-process_mode = 1
-wait_time = 0.01
-one_shot = false
-autostart = true
+position = Vector2( 164.828, 48 )
+keys = [ 0, 1, 2, 3 ]
 
-[node name="Timer" type="Timer" parent="Spawner" index="1"]
+[node name="Rhyno" parent="." index="2" instance=ExtResource( 3 )]
 
-process_mode = 1
-wait_time = 4.0
-one_shot = false
-autostart = true
+position = Vector2( 813.073, 48 )
+keys = [ 4, 5, 6, 7 ]
 
-[node name="Target" type="Position2D" parent="Spawner" index="2"]
-
-position = Vector2( 0.83075, 915 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Detector" type="Node2D" parent="." index="1"]
-
-editor/display_folded = true
-position = Vector2( 500, 500 )
-script = ExtResource( 4 )
-_sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_group_": true
-}
-center_threshold = 6
-
-[node name="Sprite" type="Sprite" parent="Detector" index="0"]
-
-scale = Vector2( 0.5, 0.5 )
-z_index = -2
-texture = ExtResource( 5 )
-_sections_unfolded = [ "Transform", "Z Index" ]
-
-[node name="Area2D" type="Area2D" parent="Detector" index="1"]
-
-editor/display_folded = true
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-_sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Shape" type="CollisionShape2D" parent="Detector/Area2D" index="0"]
-
-scale = Vector2( 3.3, 3.3 )
-shape = SubResource( 1 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Center" type="Line2D" parent="Detector" index="2"]
-
-points = PoolVector2Array( 0, 0, 0, 0 )
-width = 2.0
-default_color = Color( 0.4, 0.5, 1, 0 )
-texture_mode = 150339601
-sharp_limit = 2.0
-round_precision = 8
-_sections_unfolded = [ "Transform" ]
-
-[node name="MX" type="AudioStreamPlayer" parent="Detector" index="3"]
-
-stream = ExtResource( 6 )
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-mix_target = 0
-bus = "Master"
-
-[node name="A" type="AudioStreamPlayer2D" parent="Detector" index="4"]
-
-stream = ExtResource( 7 )
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
-bus = "Master"
-area_mask = 1
-
-[node name="S" type="AudioStreamPlayer2D" parent="Detector" index="5"]
-
-stream = ExtResource( 8 )
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
-bus = "Master"
-area_mask = 1
-
-[node name="D" type="AudioStreamPlayer2D" parent="Detector" index="6"]
-
-stream = ExtResource( 9 )
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
-bus = "Master"
-area_mask = 1
-
-[node name="F" type="AudioStreamPlayer2D" parent="Detector" index="7"]
-
-stream = ExtResource( 10 )
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
-bus = "Master"
-area_mask = 1
-
-[node name="Debug" type="Control" parent="." index="2"]
+[node name="Debug" type="Control" parent="." index="3"]
 
 editor/display_folded = true
 anchor_left = 0.0
@@ -169,7 +59,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-script = ExtResource( 11 )
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -190,7 +80,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 12 )
+custom_fonts/font = ExtResource( 5 )
 text = "Goal placeholder"
 percent_visible = 1.0
 lines_skipped = 0
@@ -213,7 +103,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 12 )
+custom_fonts/font = ExtResource( 5 )
 text = "Input placeholder"
 percent_visible = 1.0
 lines_skipped = 0
@@ -236,19 +126,11 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 12 )
+custom_fonts/font = ExtResource( 5 )
 text = "Input placeholder"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_fonts" ]
-
-[connection signal="timeout" from="Spawner/Metronome" to="Spawner" method="_on_Metronome_timeout"]
-
-[connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_Timer_timeout"]
-
-[connection signal="area_entered" from="Detector/Area2D" to="Detector" method="_on_Area2D_area_entered"]
-
-[connection signal="area_exited" from="Detector/Area2D" to="Detector" method="_on_Area2D_area_exited"]
 
 

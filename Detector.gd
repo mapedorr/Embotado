@@ -20,7 +20,7 @@ func _ready():
 	on_area = false
 	on_center = false
 	spawner = $"../Spawner"
-	dbg = $"../Debug"
+	dbg = $"../../Debug"
 	current_checked = false
 	
 	dbg.label("Goal", "")
@@ -36,19 +36,29 @@ func _process(delta):
 	
 	if spawner.eval_array.size() > 0:
 		current_letter = spawner.eval_array[0].letter
-		dbg.label("Goal", "Evaluando " + current_letter)
+		# dbg.label("Goal", "Evaluando " + current_letter)
+
+		check_press($"../".get_letter_code(current_letter))
 		match current_letter:
 			"A":
-				check_press(KEY_A)
 				SFX = $A
 			"S":
-				check_press(KEY_S)
 				SFX = $S
 			"D":
-				check_press(KEY_D)
 				SFX = $D
 			"F":
-				check_press(KEY_F)
+				SFX = $F
+			"H":
+				# TODO: put the proper sound here
+				SFX = $A
+			"J":
+				# TODO: put the proper sound here
+				SFX = $S
+			"K":
+				# TODO: put the proper sound here
+				SFX = $D
+			"L":
+				# TODO: put the proper sound here
 				SFX = $F
 
 func play_music():
@@ -70,6 +80,7 @@ func check_press(key_code):
 			spawner.eval_array[0].get_node("Sprite").modulate = Color("7bccc4")
 		else:
 			spawner.eval_array[0].get_node("Sprite").modulate = Color("b84042")
+		$"../".score(on_area, on_center)
 
 func _on_Area2D_area_entered(area):
 	instruction_area = area
@@ -84,7 +95,7 @@ func _on_Area2D_area_exited(area):
 
 func change_letter():
 	spawner.eval_array.pop_front()
-	if spawner.eval_array.size() > 0:
-		dbg.label("Goal", "Evaluando " + spawner.eval_array[0].letter)
-	else:
-		dbg.label("Goal", "Nada para evaluar")
+	# if spawner.eval_array.size() > 0:
+	# 	dbg.label("Goal", "Evaluando " + spawner.eval_array[0].letter)
+	# else:
+	# 	dbg.label("Goal", "Nada para evaluar")

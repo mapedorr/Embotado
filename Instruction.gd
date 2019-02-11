@@ -7,7 +7,7 @@ var tween_duration
 var movement_target
 var letter
 
-const TYPES = ["A", "S", "D", "F"]
+const TYPES = ["A", "S", "D", "F", "H", "J", "K", "L"]
 const SPRITES_PATH = "res://Sprites/tile%s.png"
 
 # Called when the node is added to the scene for the first time.
@@ -33,7 +33,7 @@ func appear():
 		self,
 		"position",
 		self.position,
-		movement_target.global_position,
+		movement_target.position,
 		tween_duration,
 		Tween.TRANS_LINEAR,
 		Tween.EASE_IN

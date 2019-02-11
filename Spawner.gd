@@ -22,7 +22,7 @@ var line_count
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	eval_array = []
-	dbg = $"../Debug"
+	dbg = $"../../Debug"
 	beat = 0
 	last_beat = 0
 	metronome_count = 1
@@ -88,17 +88,15 @@ func _on_Metronome_timeout():
 
 	metronome_count += 1
 
-func _on_Timer_timeout():
-	if instruction_type and beat > 0:
-		create_instruction()
-
 func create_instruction():
 	var instruction_i = instruction_type.instance()
 	instruction_i.position.x = self.position.x
 	instruction_i.position.y = self.position.y
 	# Get a random letter for the instantiated Instruction
-	var random_index = randi() % instruction_i.TYPES.size()
-	var letter = instruction_i.TYPES[random_index]
+	var random_index = randi() % $"../".keys.size()
+	var letter = $"../".get_letter(random_index)
+	# var random_index = randi() % instruction_i.TYPES.size()
+	# var letter = instruction_i.TYPES[random_index]
 	instruction_i.initialize({
 		"target": $Target,
 		"letter": letter,
@@ -113,39 +111,3 @@ func notes_set(new_value):
 
 func notes_get():
 	return notes
-
-func check_beat(note):
-	beat = note
-	match note:
-		3:
-			beat = 2
-		7:
-			beat = 4
-		15:
-			beat = Measure
-		31:
-			beat = Measure * 2
-		63:
-			beat = Measure * 4
-	dbg.label("Symbol", "Figura: " + get_note_name(beat))
-	if last_beat != beat:
-		return true
-
-func get_note_name(note_measure):
-	match note_measure:
-		0:
-			return "Silencio"
-		1:
-			return "Redonda"
-		2:
-			return "Blanca"
-		4:
-			return "Negra"
-		8:
-			return "Corchea"
-		16:
-			return "Semicorchea"
-		32:
-			return "Fusa"
-		64:
-			return "Semifusa"
