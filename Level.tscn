@@ -27,26 +27,35 @@ debug = true
 
 position = Vector2( 500, 48.8746 )
 script = ExtResource( 2 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Material", "Transform", "Visibility" ]
 instruction_type = ExtResource( 3 )
 MX_BPM = 98.0
 Time = 6
 Measure = 8
+notes = [ 1, 17, 21, 63, 5 ]
 
-[node name="Timer" type="Timer" parent="Spawner" index="0"]
+[node name="Metronome" type="Timer" parent="Spawner" index="0"]
+
+process_mode = 1
+wait_time = 0.01
+one_shot = false
+autostart = false
+
+[node name="Timer" type="Timer" parent="Spawner" index="1"]
 
 process_mode = 1
 wait_time = 4.0
 one_shot = false
 autostart = true
 
-[node name="Target" type="Position2D" parent="Spawner" index="1"]
+[node name="Target" type="Position2D" parent="Spawner" index="2"]
 
 position = Vector2( 0.83075, 915 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Detector" type="Node2D" parent="." index="1"]
 
+editor/display_folded = true
 position = Vector2( 500, 500 )
 script = ExtResource( 4 )
 _sections_unfolded = [ "Transform" ]
@@ -209,7 +218,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_fonts" ]
 
-[node name="RayCast" type="Label" parent="Debug" index="2"]
+[node name="Symbol" type="Label" parent="Debug" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -231,6 +240,8 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_fonts" ]
+
+[connection signal="timeout" from="Spawner/Metronome" to="Spawner" method="_on_Metronome_timeout"]
 
 [connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_Timer_timeout"]
 
