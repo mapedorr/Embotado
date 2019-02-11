@@ -25,6 +25,7 @@ debug = true
 
 [node name="Spawner" type="Node2D" parent="." index="0"]
 
+editor/display_folded = true
 position = Vector2( 502, 32 )
 script = ExtResource( 2 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
@@ -32,14 +33,14 @@ instruction_type = ExtResource( 3 )
 MX_BPM = 98.0
 Time = 6
 Measure = 8
-notes = [ 1, 17, 21, 63, 5 ]
+notes = [ 1, 9, 21, 63, 5, 0 ]
 
 [node name="Metronome" type="Timer" parent="Spawner" index="0"]
 
 process_mode = 1
 wait_time = 0.01
 one_shot = false
-autostart = false
+autostart = true
 
 [node name="Timer" type="Timer" parent="Spawner" index="1"]
 
@@ -62,6 +63,7 @@ _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_group_": true
 }
+center_threshold = 6
 
 [node name="Sprite" type="Sprite" parent="Detector" index="0"]
 

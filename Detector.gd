@@ -1,5 +1,7 @@
 extends Node2D
 
+export (int) var center_threshold = 6
+
 var on_area
 var spawner
 var d_goal
@@ -24,15 +26,11 @@ func _ready():
 	dbg.label("Input", "")
 
 func _process(delta):
-	if is_playing == false:
-		spawner.get_node("Metronome").start()
-		$MX.play()
-		is_playing = true
 	if on_area:
 		# check if the Instruction is centered
 		$Center.points[1] = self.to_local(instruction_area.global_position)
 		on_center = false
-		if floor($Center.points[0].distance_to($Center.points[1])) <= 3:
+		if floor($Center.points[0].distance_to($Center.points[1])) <= center_threshold:
 			on_center = true
 	
 	if spawner.eval_array.size() > 0:
@@ -52,6 +50,11 @@ func _process(delta):
 				check_press(KEY_F)
 				SFX = $F
 
+func play_music():
+	if is_playing == false:
+		$MX.play()
+		is_playing = true
+
 func check_press(key_code):
 	if Input.is_key_pressed(key_code) and not current_checked:
 		current_checked = true
@@ -66,6 +69,7 @@ func check_press(key_code):
 		else:
 			spawner.eval_array[0].get_node("Sprite").modulate = Color("b84042")
 			dbg.label("Input", "¡Qué piró tan bobo!")
+		spawner.eval_array[0].get_node("Area2D").queue_free()
 
 func _on_Area2D_area_entered(area):
 	instruction_area = area

@@ -25,44 +25,42 @@ func _ready():
 	beat = 0
 	last_beat = 0
 	metronome_count = 1
-	notes_array = [false, false, false, false, false, false, false, false]
+	notes_array = [false, false, false, false, false, false]
 	bars_line = [3, 3, 3, 3, 2, 0, 0, 0]
 	line_count = 0
-	
-#	$Metronome.wait_time = 0
-	metronome_measure = Measure
-	$Metronome.wait_time = (60 * Time) / MX_BPM / metronome_measure
-#	current_bar = notes[randi() % notes.size()]
-	
-#	if beat > 0:
-#		$Timer.wait_time = (60 * Time) / MX_BPM / beat
-#	else:
-#		$Timer.wait_time = $Metronome.wait_time
+
+	metronome_measure = Time
+	$Metronome.wait_time = (60 * 1) / MX_BPM / 2
+
+func setup_metronome():
+	$Metronome.wait_time = (60 * Time) / MX_BPM / 2
 
 func _on_Metronome_timeout():
 	if metronome_count > metronome_measure:
 		metronome_count = 1
 
-	if notes_array[metronome_count - 1]:
-		create_instruction()
-
 	if metronome_count == metronome_measure:
-		notes_array = [false, false, false, false, false, false, false, false]
-#		var random_bar = randi() % notes.size()
-#		var random_bar = 0
+		$"../Detector".play_music()
+		# Clear the notes
+		notes_array = [false, false, false, false, false, false]
+		
+		var random_pattern = randi() % notes.size()
+		var fixed_pattern = 0
+
 		# Check if there's a note for the current beat
-		# 1 2 3 4  5  6
-		# 1 2 4 8 16 32
-		match notes[bars_line[line_count]]:
+		# Casiila: 1 2 3 4  5  6
+		# Valor:   1 2 4 8 16 32
+
+		match notes[fixed_pattern]:
 			1:
 				# Create a whole note
 				notes_array[0] = true
-				dbg.label("Symbol", "Compás: 1 redonda")
-			4:
+				dbg.label("Symbol", "Compás: redonda + blanca")
+			9:
 				# Create a a white note, then a whole note
 				notes_array[0] = true
-				notes_array[2] = true
-				dbg.label("Symbol", "Compás: 1 blanca, 1 redonda")
+				notes_array[3] = true
+				dbg.label("Symbol", "Compás: 2 negras con puntillo")
 			17:
 				# Create a whole note, then a white note
 				notes_array[0] = true
@@ -75,7 +73,7 @@ func _on_Metronome_timeout():
 				notes_array[4] = true
 				dbg.label("Symbol", "Compás: 3 blancas")
 			63:
-				# Create 3 white notes
+				# Create 6 negras
 				notes_array[0] = true
 				notes_array[1] = true
 				notes_array[2] = true
@@ -85,8 +83,10 @@ func _on_Metronome_timeout():
 				dbg.label("Symbol", "Compás: 6 negras")
 		line_count += 1 if line_count < bars_line.size() - 1 else -line_count
 
+	if notes_array[metronome_count - 1]:
+		create_instruction()
+
 	metronome_count += 1
-#	print(("tick %s" if metronome_count < metronome_measure else "BO%sM!") % metronome_count)
 
 func _on_Timer_timeout():
 	if instruction_type and beat > 0:
