@@ -55,7 +55,6 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Detector" type="Node2D" parent="." index="1"]
 
-editor/display_folded = true
 position = Vector2( 500, 500 )
 script = ExtResource( 4 )
 _sections_unfolded = [ "Transform" ]

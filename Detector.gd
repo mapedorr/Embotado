@@ -65,7 +65,7 @@ func check_press(key_code):
 				# TODO: play something special?
 				var ExpPart = Explosion.instance()
 				add_child(ExpPart)
-				instruction_area.get_node("../Sprite").set_scale(Vector2(0.5, 0.5))
+				instruction_area.get_node("../Sprite").set_scale(Vector2(0.4, 0.4))
 				pass
 			SFX.play()
 			spawner.eval_array[0].get_node("Sprite").modulate = Color("7bccc4")
