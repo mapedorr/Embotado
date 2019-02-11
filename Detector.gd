@@ -25,8 +25,8 @@ func _ready():
 
 func _process(delta):
 	if is_playing == false:
-		$MX.play()
 		spawner.get_node("Metronome").start()
+		$MX.play()
 		is_playing = true
 	if on_area:
 		# check if the Instruction is centered

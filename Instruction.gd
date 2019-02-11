@@ -12,10 +12,7 @@ const SPRITES_PATH = "res://Sprites/tile%s.png"
 
 # Called when the node is added to the scene for the first time.
 func _ready():
-	
 	tween_duration = 5 #(60*1)/MX_BPM
-	
-	
 	self.visible = true
 
 # Called after the Node is instantiated by Level/Spawner
@@ -23,6 +20,7 @@ func initialize(init_data):
 	self.visible = false
 	movement_target = init_data.target
 	letter = init_data.letter
+#	tween_duration = init_data.tween_duration
 	
 	# Assign the proper texture based on the assigned letter
 	$Sprite.texture = load(SPRITES_PATH % letter)
@@ -35,7 +33,7 @@ func appear():
 		movement_target.global_position,
 		tween_duration,
 		Tween.TRANS_LINEAR,
-		Tween.EASE_OUT
+		Tween.EASE_IN
 	)
 	$Tween.start()
 

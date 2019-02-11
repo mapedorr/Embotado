@@ -6,46 +6,107 @@ export (float) var MX_BPM
 export (int) var Time
 export (int) var Measure
 export(Array, int, FLAGS, "1,2,3,4,5,6") var notes setget notes_set, notes_get
-# export(int, FLAGS, "1,2,3,4,5,6") var notes = 0 setget notes_set, notes_get
 
 var eval_array
 var dbg
 var beat
 var last_beat
+var metronome_count
+var current_bar
+var metronome_measure
+var notes_array
+var bars_line
+var line_count
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	eval_array = []
+	dbg = $"../Debug"
 	beat = 0
 	last_beat = 0
-	dbg = $"../Debug"
+	metronome_count = 1
+	notes_array = [false, false, false, false, false, false, false, false]
+	bars_line = [3, 3, 3, 3, 2, 0, 0, 0]
+	line_count = 0
 	
-	$Metronome.wait_time = (60 * Time) / MX_BPM
+#	$Metronome.wait_time = 0
+	metronome_measure = Measure
+	$Metronome.wait_time = (60 * Time) / MX_BPM / metronome_measure
+#	current_bar = notes[randi() % notes.size()]
 	
-	if beat > 0:
-		$Timer.wait_time = (60 * Time) / MX_BPM / beat
-	else:
-		$Timer.wait_time = $Metronome.wait_time
+#	if beat > 0:
+#		$Timer.wait_time = (60 * Time) / MX_BPM / beat
+#	else:
+#		$Timer.wait_time = $Metronome.wait_time
 
 func _on_Metronome_timeout():
-	if check_beat(notes[randi() % notes.size()]):
-		$Timer.wait_time = (60 * Time) / MX_BPM / beat
+	if metronome_count > metronome_measure:
+		metronome_count = 1
+
+	if notes_array[metronome_count - 1]:
+		create_instruction()
+
+	if metronome_count == metronome_measure:
+		notes_array = [false, false, false, false, false, false, false, false]
+#		var random_bar = randi() % notes.size()
+#		var random_bar = 0
+		# Check if there's a note for the current beat
+		# 1 2 3 4  5  6
+		# 1 2 4 8 16 32
+		match notes[bars_line[line_count]]:
+			1:
+				# Create a whole note
+				notes_array[0] = true
+				dbg.label("Symbol", "Compás: 1 redonda")
+			4:
+				# Create a a white note, then a whole note
+				notes_array[0] = true
+				notes_array[2] = true
+				dbg.label("Symbol", "Compás: 1 blanca, 1 redonda")
+			17:
+				# Create a whole note, then a white note
+				notes_array[0] = true
+				notes_array[4] = true
+				dbg.label("Symbol", "Compás: 1 redonda, 1 blanca")
+			21:
+				# Create 3 white notes
+				notes_array[0] = true
+				notes_array[2] = true
+				notes_array[4] = true
+				dbg.label("Symbol", "Compás: 3 blancas")
+			63:
+				# Create 3 white notes
+				notes_array[0] = true
+				notes_array[1] = true
+				notes_array[2] = true
+				notes_array[3] = true
+				notes_array[4] = true
+				notes_array[5] = true
+				dbg.label("Symbol", "Compás: 6 negras")
+		line_count += 1 if line_count < bars_line.size() - 1 else -line_count
+
+	metronome_count += 1
+#	print(("tick %s" if metronome_count < metronome_measure else "BO%sM!") % metronome_count)
 
 func _on_Timer_timeout():
 	if instruction_type and beat > 0:
-		var instruction_i = instruction_type.instance()
-		instruction_i.position.x = self.position.x
-		instruction_i.position.y = self.position.y
-		# Get a random letter for the instantiated Instruction
-		var random_index = randi() % instruction_i.TYPES.size()
-		var letter = instruction_i.TYPES[random_index]
-		instruction_i.initialize({
-			"target": $Target,
-			"letter": letter
-		})
-		eval_array.append(instruction_i)
-		get_parent().add_child(instruction_i)
-		instruction_i.appear()
+		create_instruction()
+
+func create_instruction():
+	var instruction_i = instruction_type.instance()
+	instruction_i.position.x = self.position.x
+	instruction_i.position.y = self.position.y
+	# Get a random letter for the instantiated Instruction
+	var random_index = randi() % instruction_i.TYPES.size()
+	var letter = instruction_i.TYPES[random_index]
+	instruction_i.initialize({
+		"target": $Target,
+		"letter": letter,
+		"tween_duration": Measure
+	})
+	eval_array.append(instruction_i)
+	get_parent().add_child(instruction_i)
+	instruction_i.appear()
 
 func notes_set(new_value):
 	notes = new_value

@@ -25,19 +25,19 @@ debug = true
 
 [node name="Spawner" type="Node2D" parent="." index="0"]
 
-position = Vector2( 502.661, 31.8746 )
+position = Vector2( 502, 32 )
 script = ExtResource( 2 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 instruction_type = ExtResource( 3 )
 MX_BPM = 98.0
 Time = 6
 Measure = 8
-notes = [ 1, 2, 4 ]
+notes = [ 1, 17, 21, 63, 5 ]
 
 [node name="Metronome" type="Timer" parent="Spawner" index="0"]
 
 process_mode = 1
-wait_time = 1.0
+wait_time = 0.01
 one_shot = false
 autostart = false
 
@@ -50,7 +50,7 @@ autostart = true
 
 [node name="Target" type="Position2D" parent="Spawner" index="2"]
 
-position = Vector2( -2.16925, 645.436 )
+position = Vector2( 0, 700 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Detector" type="Node2D" parent="." index="1"]
