@@ -1,6 +1,7 @@
 extends Node2D
 
 export (int) var center_threshold = 6
+onready var Explosion = preload("res://Explosion.tscn")
 
 var on_area
 var spawner
@@ -13,6 +14,9 @@ var SFX
 var dbg
 var instruction_area
 var on_center
+
+
+
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
@@ -61,7 +65,9 @@ func check_press(key_code):
 		if on_area:
 			if on_center:
 				# TODO: play something special?
-				instruction_area.get_node("../Sprite").set_scale(Vector2(1.0, 1.0))
+				var ExpPart = Explosion.instance()
+				add_child(ExpPart)
+				instruction_area.get_node("../Sprite").set_scale(Vector2(0.4, 0.4))
 				pass
 			SFX.play()
 			spawner.eval_array[0].get_node("Sprite").modulate = Color("7bccc4")
