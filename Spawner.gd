@@ -39,8 +39,6 @@ func setup_metronome():
 func _on_Metronome_timeout():
 	if metronome_count > metronome_measure:
 		metronome_count = 1
-
-	if metronome_count == metronome_measure:
 		$"../Detector".play_music()
 		# Clear the notes
 		notes_array = [false, false, false, false, false, false]
@@ -84,6 +82,7 @@ func _on_Metronome_timeout():
 				dbg.label("Symbol", "Compás: 6 negras")
 		line_count += 1 if line_count < bars_line.size() - 1 else -line_count
 
+	print(metronome_count)
 	if notes_array[metronome_count - 1]:
 		create_instruction()
 
