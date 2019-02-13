@@ -40,21 +40,21 @@ func _process(delta):
 
 		check_press($"../".get_letter_code(current_letter))
 		match current_letter:
+			"W":
+				SFX = $F
 			"A":
 				SFX = $A
 			"S":
 				SFX = $S
 			"D":
 				SFX = $D
-			"F":
-				SFX = $F
-			"H":
+			"UP":
 				SFX = $H
-			"J":
+			"LEFT":
 				SFX = $J
-			"K":
+			"DOWN":
 				SFX = $K
-			"L":
+			"RIGHT":
 				SFX = $L
 
 func play_music():

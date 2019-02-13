@@ -27,7 +27,6 @@ keys = null
 
 [node name="Spawner" type="Node2D" parent="." index="0"]
 
-editor/display_folded = true
 script = ExtResource( 2 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 instruction_type = ExtResource( 3 )
@@ -39,14 +38,7 @@ Level1 = [ 0, 1, 8 ]
 Level2 = [ 8, 1, 8, 1 ]
 Level3 = [ 17, 4, 1, 1, 4, 1, 0, 0 ]
 
-[node name="Metronome" type="Timer" parent="Spawner" index="0"]
-
-process_mode = 1
-wait_time = 0.01
-one_shot = false
-autostart = true
-
-[node name="Target" type="Position2D" parent="Spawner" index="1"]
+[node name="Target" type="Position2D" parent="Spawner" index="0"]
 
 position = Vector2( 0.83075, 915 )
 _sections_unfolded = [ "Transform" ]
@@ -187,8 +179,6 @@ max_distance = 2000.0
 attenuation = 1.0
 bus = "Master"
 area_mask = 1
-
-[connection signal="timeout" from="Spawner/Metronome" to="Spawner" method="_on_Metronome_timeout"]
 
 [connection signal="area_entered" from="Detector/Area2D" to="Detector" method="_on_Area2D_area_entered"]
 

@@ -2,7 +2,16 @@ extends Node2D
 
 var local_score = 0
 
-export(Array, int, "A", "S", "D", "F", "H", "J", "K", "L") var keys = [65, 83, 68, 70, 72, 74, 75, 76]
+export(Array, int, "W", "A", "S", "D") var keys = [
+	KEY_W,
+	65,
+	83,
+	68,
+	KEY_UP,
+	KEY_LEFT,
+	KEY_DOWN,
+	KEY_RIGHT
+]
 
 const LETTERS = {
 	0: {
@@ -18,24 +27,24 @@ const LETTERS = {
 		"character": "D"
 	},
 	3: {
-		"key_code": 70,
-		"character": "F"
+		"key_code": KEY_W,
+		"character": "W"
 	},
 	4: {
-		"key_code": 72,
-		"character": "H"
+		"key_code": KEY_UP,
+		"character": "UP"
 	},
 	5: {
-		"key_code": 74,
-		"character": "J"
+		"key_code": KEY_LEFT,
+		"character": "LEFT"
 	},
 	6: {
-		"key_code": 75,
-		"character": "K"
+		"key_code": KEY_DOWN,
+		"character": "DOWN"
 	},
 	7: {
-		"key_code": 76,
-		"character": "L"
+		"key_code": KEY_RIGHT,
+		"character": "RIGHT"
 	}
 }
 
