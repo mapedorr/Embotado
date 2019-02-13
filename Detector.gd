@@ -49,17 +49,13 @@ func _process(delta):
 			"F":
 				SFX = $F
 			"H":
-				# TODO: put the proper sound here
-				SFX = $A
+				SFX = $H
 			"J":
-				# TODO: put the proper sound here
-				SFX = $S
+				SFX = $J
 			"K":
-				# TODO: put the proper sound here
-				SFX = $D
+				SFX = $K
 			"L":
-				# TODO: put the proper sound here
-				SFX = $F
+				SFX = $L
 
 func play_music():
 	if is_playing == false:

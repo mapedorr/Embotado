@@ -7,6 +7,9 @@ export (float) var MX_BPM
 export (int) var Time
 export (int) var Measure
 export(Array, int, FLAGS, "1,2,3,4,5,6") var notes setget notes_set, notes_get
+export(Array, int, FLAGS, "1,2,3,4,5,6") var Level1
+export(Array, int, FLAGS, "1,2,3,4,5,6") var Level2
+export(Array, int, FLAGS, "1,2,3,4,5,6") var Level3
 
 var eval_array
 var dbg
@@ -18,8 +21,10 @@ var metronome_measure
 var notes_array
 var bars_line
 var line_count
+var currentLevel = 1
 
 func _ready():
+	notes = Level1
 	# Called when the node is added to the scene for the first time.
 	eval_array = []
 	dbg = $"../../Debug"
@@ -33,13 +38,22 @@ func _ready():
 	metronome_measure = Time
 	$Metronome.wait_time = (60 * 1) / MX_BPM / 2
 
+func change_level():
+	print ("Level"+String(currentLevel))
+	currentLevel += 1
+	#var level_array = "Level"+String(currentLevel)
+	#notes = level_array 
+
+	
+
+
 func setup_metronome():
 	$Metronome.wait_time = (60 * Time) / MX_BPM / 2
 
 func _on_Metronome_timeout():
 	if metronome_count > metronome_measure:
 		metronome_count = 1
-		$"../Detector".play_music()
+		#$"../Detector".play_music()
 		# Clear the notes
 		notes_array = [false, false, false, false, false, false]
 		
@@ -50,7 +64,7 @@ func _on_Metronome_timeout():
 		# Casiila: 1 2 3 4  5  6
 		# Valor:   1 2 4 8 16 32
 
-		match notes[fixed_pattern]:
+		match notes[random_pattern]:
 			1:
 				# Create a whole note
 				notes_array[0] = true
@@ -71,6 +85,12 @@ func _on_Metronome_timeout():
 				notes_array[2] = true
 				notes_array[4] = true
 				dbg.label("Symbol", "Compás: 3 blancas")
+			
+			42:
+				notes_array[1] = true
+				notes_array[3] = true
+				notes_array[5] = true
+			
 			63:
 				# Create 6 negras
 				notes_array[0] = true
@@ -82,7 +102,6 @@ func _on_Metronome_timeout():
 				dbg.label("Symbol", "Compás: 6 negras")
 		line_count += 1 if line_count < bars_line.size() - 1 else -line_count
 
-	print(metronome_count)
 	if notes_array[metronome_count - 1]:
 		create_instruction()
 

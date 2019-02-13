@@ -1,5 +1,7 @@
 extends Node2D
 
+var local_score = 0
+
 export(Array, int, "A", "S", "D", "F", "H", "J", "K", "L") var keys = [65, 83, 68, 70, 72, 74, 75, 76]
 
 const LETTERS = {
@@ -55,3 +57,7 @@ func score(area, center):
 	if area or center:
 		_score = 2 if center else 1
 	$"../".update_score(_score)
+	local_score = _score + local_score
+	print(local_score)
+	if local_score > 5:
+		$Spawner.change_level()
