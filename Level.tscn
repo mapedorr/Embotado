@@ -11,14 +11,14 @@
 
 script = ExtResource( 1 )
 debug = false
-BPM = 98
+MX_BPM = 98.0
 
 [node name="Metronome" type="Timer" parent="." index="0"]
 
 process_mode = 1
 wait_time = 0.01
 one_shot = false
-autostart = true
+autostart = false
 
 [node name="Score" type="Label" parent="." index="1"]
 

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Audio/MusicSystem.gd" type="Script" id=1]
+[ext_resource path="res://Audio/MusicDevice/MusicDevice.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Audio/TVJam_V02.wav" type="AudioStream" id=3]
+[ext_resource path="res://Audio/MX_LvL1.5.wav" type="AudioStream" id=4]
+
+[node name="MusicSystem" type="Node" index="0"]
+
+script = ExtResource( 1 )
+AutoPlay = true
+waitTime = 120.0
+
+[node name="Level1_Main" parent="." index="0" instance=ExtResource( 2 )]
+
+Mx = ExtResource( 3 )
+AutoPlay = false
+Bus = "MX_Bus"
+
+[node name="Level1_Ending" parent="." index="1" instance=ExtResource( 2 )]
+
+Mx = ExtResource( 4 )
+AutoPlay = false
+Bus = "MX_Bus"
+
+

@@ -1,7 +1,9 @@
 extends Node
 
 export(bool) var debug = false
-export(int) var BPM 
+export(float) var MX_BPM 
+
+var barTime
 
 var score
 var metronome_measure = 6
@@ -13,18 +15,20 @@ var rhyno_spawner
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
+	
 	$Debug.visible = debug
 	score = 0
-
+	barTime = 60/MX_BPM/2
 	panda_spawner = $Panda/Spawner
 	rhyno_spawner = $Rhyno/Spawner
-
+	$Metronome.wait_time = barTime
+	$Metronome.start()
 	update_score(score)
 
-	$Metronome.wait_time = 0.30
+	
 
 func setup_metronome():
-	$Metronome.wait_time = ((60 * 1) / BPM) / 2
+	$Metronome.wait_time = barTime
 
 func update_score(new_score):
 	score += new_score
@@ -40,6 +44,7 @@ func _on_Metronome_timeout():
 			is_playing = true
 		panda_spawner.setup_notes_array()
 		rhyno_spawner.setup_notes_array()
+
 
 	if is_playing:
 		panda_spawner.create_note(metronome_count)

@@ -6,6 +6,7 @@ export (PackedScene) var instruction_type
 export (float) var MX_BPM
 export (int) var Time
 export (int) var Measure
+export (float) var barTime
 export(Array, int, FLAGS, "1,2,3,4,5,6") var notes setget notes_set, notes_get
 export(Array, int, FLAGS, "1,2,3,4,5,6") var Level1
 export(Array, int, FLAGS, "1,2,3,4,5,6") var Level2
@@ -19,6 +20,7 @@ var currentLevel = 1
 func _ready():
 	notes = Level1
 	# Called when the node is added to the scene for the first time.
+	barTime = ((60 * 1) / MX_BPM) / 2
 	eval_array = []
 	dbg = $"../../Debug"
 	notes_array = [false, false, false, false, false, false]
@@ -88,7 +90,7 @@ func create_instruction():
 	instruction_i.initialize({
 		"target": $Target,
 		"letter": letter,
-		"tween_duration": Measure
+		"tween_duration": barTime
 	})
 	eval_array.append(instruction_i)
 	get_parent().add_child(instruction_i)
