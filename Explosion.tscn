@@ -55,7 +55,7 @@ _sections_unfolded = [ "Color", "Emission Shape", "Orbit Velocity", "Resource" ]
 
 [node name="Particles2D" type="Particles2D"]
 
-z_index = -1
+z_index = 1
 emitting = false
 amount = 35
 lifetime = 1.1

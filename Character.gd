@@ -4,9 +4,9 @@ var local_score = 0
 
 export(Array, int, "W", "A", "S", "D") var keys = [
 	KEY_W,
-	65,
-	83,
-	68,
+	KEY_A,
+	KEY_S,
+	KEY_D,
 	KEY_UP,
 	KEY_LEFT,
 	KEY_DOWN,

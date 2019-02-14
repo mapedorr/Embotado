@@ -1,0 +1,94 @@
+{
+	"textures": [
+		{
+			"image": "Rhyno.png",
+			"size": {
+				"w": 1832,
+				"h": 454
+			},
+			"sprites": [
+				{
+					"filename": "Rhyno_A.png",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 458,
+						"h": 454
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "Rhyno_D.png",
+					"region": {
+						"x": 458,
+						"y": 0,
+						"w": 458,
+						"h": 454
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "Rhyno_S.png",
+					"region": {
+						"x": 916,
+						"y": 0,
+						"w": 458,
+						"h": 454
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "Rhyno_W.png",
+					"region": {
+						"x": 1374,
+						"y": 0,
+						"w": 458,
+						"h": 454
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:f99e74620fd1f5a11446a95e740c9c39:a6add1f646e2428504fc3cedc338f1ff:5bae7dd1ab68a4598604e68dfb7cb34e$"
+	}
+}
