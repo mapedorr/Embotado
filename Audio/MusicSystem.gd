@@ -22,10 +22,8 @@ func _ready():
 	
 
 func playMx():
-	music_to_play.stopmusic()
-	music_to_play = get_child(index_track)
+	music_to_play = $Level1
 	music_to_play.playmusic()
-	timeout = waitTime
 
 
 func Mute():
@@ -37,23 +35,23 @@ func Mute():
 		Mute = false
 
 
-func nextSong():
-	index_track += 1
-	if index_track >= get_child_count():
-		index_track = 0
-	playMx()
+#func nextSong():
+#	index_track += 1
+#	if index_track >= get_child_count():
+#		index_track = 0
+#	playMx()
 
 
-func prevSong():
-	index_track -= 1
-	if index_track < 0:
-		index_track = get_child_count() - 1
-	playMx()
+#func prevSong():
+#	index_track -= 1
+#	if index_track < 0:
+#		index_track = get_child_count() - 1
+#	playMx()
 
 
-func _process(delta):
-	timeout -= delta
-	if timeout < 0:
-		nextSong()
-		timeout = waitTime
+#func _process(delta):
+#	timeout -= delta
+#	if timeout < 0:
+#		nextSong()
+#		timeout = waitTime
 

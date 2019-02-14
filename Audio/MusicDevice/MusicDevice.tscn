@@ -5,6 +5,7 @@
 
 [node name="MusicDevice" type="Node"]
 
+editor/display_folded = true
 script = ExtResource( 1 )
 Mx = null
 Volume = 0.0

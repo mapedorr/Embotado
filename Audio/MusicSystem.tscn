@@ -5,13 +5,13 @@
 [ext_resource path="res://Audio/TVJam_V02.wav" type="AudioStream" id=3]
 [ext_resource path="res://Audio/MX_LvL1.5.wav" type="AudioStream" id=4]
 
-[node name="MusicSystem" type="Node" index="0"]
+[node name="MusicSystem" type="Node"]
 
 script = ExtResource( 1 )
-AutoPlay = true
+AutoPlay = false
 waitTime = 120.0
 
-[node name="Level1_Main" parent="." index="0" instance=ExtResource( 2 )]
+[node name="Level1" parent="." index="0" instance=ExtResource( 2 )]
 
 Mx = ExtResource( 3 )
 AutoPlay = false
