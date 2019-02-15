@@ -1,0 +1,93 @@
+{
+	"textures": [
+		{
+			"image": "Panda.png",
+			"size": {
+				"w": 2085,
+				"h": 444
+			},
+			"sprites": [
+				{
+					"filename": "Panda_A.png",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 417,
+						"h": 444
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "Panda_D.png",
+					"region": {
+						"x": 417,
+						"y": 0,
+						"w": 417,
+						"h": 444
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "Panda_Idle.png",
+					"region": {
+						"x": 834,
+						"y": 0,
+						"w": 417,
+						"h": 444
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "Panda_S.png",
+					"region": {
+						"x": 1251,
+						"y": 0,
+						"w": 417,
+						"h": 444
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "Panda_W.png",
+					"region": {
+						"x": 1668,
+						"y": 0,
+						"w": 417,
+						"h": 444
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:eab0f6abb08bdbebdaafe61d374eba1d:961e2d4f74cc309f8e796ee4103de4ce:01378e333613a1b32fd644daeffbccee$"
+	}
+}

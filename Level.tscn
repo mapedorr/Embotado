@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Level.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Background.png" type="Texture" id=2]
-[ext_resource path="res://CustomResources/FiraCode-Regular-32.tres" type="DynamicFont" id=3]
+[ext_resource path="res://CustomResources/CFCrayons-Regular-64.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Character/Character.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Debug.gd" type="Script" id=5]
-[ext_resource path="res://CustomResources/FiraCode-Regular-16.tres" type="DynamicFont" id=6]
-[ext_resource path="res://Audio/MusicSystem.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Character/Sprites/Panda.png" type="Texture" id=5]
+[ext_resource path="res://Debug.gd" type="Script" id=6]
+[ext_resource path="res://CustomResources/FiraCode-Regular-16.tres" type="DynamicFont" id=7]
+[ext_resource path="res://Audio/MusicSystem.tscn" type="PackedScene" id=8]
 
 [node name="Level" type="Node" index="0"]
 
@@ -36,37 +37,41 @@ anchor_left = 0.5
 anchor_top = 0.0
 anchor_right = 0.5
 anchor_bottom = 0.0
-margin_left = -95.0
-margin_top = 32.0
-margin_right = 95.0
-margin_bottom = 71.0
-rect_pivot_offset = Vector2( 0, 0 )
+margin_left = -142.0
+margin_top = 20.0
+margin_right = 152.0
+margin_bottom = 97.0
+rect_pivot_offset = Vector2( 440, 20 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 3 )
-text = "SCORE = 00"
+custom_colors/font_color = Color( 0.0156863, 0.266667, 0.0823529, 1 )
+text = "SCORE: 00"
 align = 1
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Grow Direction", "custom_fonts" ]
+_sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
 [node name="Panda" parent="." index="3" instance=ExtResource( 4 )]
 
+editor/display_folded = true
 position = Vector2( 164.828, 48 )
 keys = [ 0, 1, 2, 3 ]
 
 [node name="Sprite" parent="Panda" index="2"]
 
 position = Vector2( 148, 407 )
-_sections_unfolded = [ "Transform" ]
+texture = ExtResource( 5 )
+_sections_unfolded = [ "Animation", "Region" ]
 
 [node name="Rhyno" parent="." index="4" instance=ExtResource( 4 )]
 
+editor/display_folded = true
 position = Vector2( 813.073, 48 )
 keys = [ 4, 5, 6, 7 ]
 
@@ -88,7 +93,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -109,7 +114,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 7 )
 text = "Goal placeholder"
 percent_visible = 1.0
 lines_skipped = 0
@@ -132,7 +137,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 7 )
 text = "Input placeholder"
 percent_visible = 1.0
 lines_skipped = 0
@@ -155,14 +160,14 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 7 )
 text = "Input placeholder"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_fonts" ]
 
-[node name="MusicSystem" parent="." index="6" instance=ExtResource( 7 )]
+[node name="MusicSystem" parent="." index="6" instance=ExtResource( 8 )]
 
 [connection signal="timeout" from="Metronome" to="." method="_on_Metronome_timeout"]
 

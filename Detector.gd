@@ -74,15 +74,20 @@ func check_press(key_code):
 				instruction_area.get_node("../Sprite").set_scale(Vector2(0.4, 0.4))
 			SFX.play()
 			spawner.eval_array[0].get_node("Sprite").modulate = Color("7bccc4")
+			var last_frame = $"../Sprite".frame
 			match key_code:
 				KEY_W, KEY_UP:
-					$"../Sprite".frame = 3
+					$"../Sprite".frame = 4
 				KEY_A, KEY_LEFT:
 					$"../Sprite".frame = 0
 				KEY_S, KEY_DOWN:
-					$"../Sprite".frame = 2
+					$"../Sprite".frame = 3
 				KEY_D, KEY_RIGHT:
 					$"../Sprite".frame = 1
+			if last_frame == $"../Sprite".frame:
+				$"../Sprite".flip_h = true
+			else:
+				$"../Sprite".flip_h = false
 			$Sprite.frame
 		else:
 			spawner.eval_array[0].get_node("Sprite").modulate = Color("b84042")

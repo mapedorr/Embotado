@@ -28,7 +28,6 @@ keys = null
 
 [node name="Detector" type="Node2D" parent="." index="0"]
 
-editor/display_folded = true
 position = Vector2( 0, 452 )
 script = ExtResource( 2 )
 _sections_unfolded = [ "Z Index" ]
@@ -42,7 +41,7 @@ center_threshold = 6
 scale = Vector2( 0.5, 0.5 )
 z_index = 3
 texture = ExtResource( 3 )
-_sections_unfolded = [ "Transform", "Z Index" ]
+_sections_unfolded = [ "Animation" ]
 
 [node name="Area2D" type="Area2D" parent="Detector" index="1"]
 
@@ -189,8 +188,9 @@ _sections_unfolded = [ "Transform" ]
 position = Vector2( -150, 407 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 14 )
-hframes = 4
-frame = 3
+hframes = 5
+frame = 2
+_sections_unfolded = [ "Animation" ]
 
 [connection signal="area_entered" from="Detector/Area2D" to="Detector" method="_on_Area2D_area_entered"]
 
