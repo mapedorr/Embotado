@@ -15,7 +15,7 @@
 [ext_resource path="res://Audio/MusicSystem.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Sprites/Ground.png" type="Texture" id=14]
 
-[node name="Level" type="Node" index="0"]
+[node name="Level" type="Node"]
 
 script = ExtResource( 1 )
 debug = false
@@ -89,7 +89,6 @@ _sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
 [node name="Panda" parent="." index="5" instance=ExtResource( 9 )]
 
-editor/display_folded = true
 position = Vector2( 164.828, 48 )
 keys = [ 0, 1, 2, 3 ]
 

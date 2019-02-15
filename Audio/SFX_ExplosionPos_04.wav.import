@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/SFX_ExplosionPos_04.wav-53fabe8d8cead21acc6910c4a5c2bec2.sample"
+
+[deps]
+
+source_file="res://Audio/SFX_ExplosionPos_04.wav"
+dest_files=[ "res://.import/SFX_ExplosionPos_04.wav-53fabe8d8cead21acc6910c4a5c2bec2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=true
+force/max_rate=false
+force/max_rate_hz=48000.0
+edit/trim=false
+edit/normalize=true
+edit/loop=false
+compress/mode=0

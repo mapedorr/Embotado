@@ -76,6 +76,7 @@ func _on_Metronome_timeout():
 				$AnimationPlayer.queue("Levitation")
 			if Level ==3:
 				$MusicSystem.stopMx()
+				$MusicSystem/End.playmusic()
 				# The game is over, stop the metronome and show the freed elefante
 				$Metronome.stop()
 				$Elefantenorrea.frame = Level

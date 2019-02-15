@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Character.gd" type="Script" id=1]
 [ext_resource path="res://Detector.gd" type="Script" id=2]
@@ -11,16 +11,26 @@
 [ext_resource path="res://Audio/SFX_TST_J.wav" type="AudioStream" id=9]
 [ext_resource path="res://Audio/SFX_TST_K.wav" type="AudioStream" id=10]
 [ext_resource path="res://Audio/SFX_TST_L.wav" type="AudioStream" id=11]
-[ext_resource path="res://Spawner.gd" type="Script" id=12]
-[ext_resource path="res://Instruction.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Character/Sprites/Rhyno.png" type="Texture" id=14]
+[ext_resource path="res://Audio/RandomDevice.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Audio/SFX_ExplosionPos_01.wav" type="AudioStream" id=13]
+[ext_resource path="res://Audio/SFX_ExplosionPos_02.wav" type="AudioStream" id=14]
+[ext_resource path="res://Audio/SFX_ExplosionPos_03.wav" type="AudioStream" id=15]
+[ext_resource path="res://Audio/SFX_ExplosionPos_04.wav" type="AudioStream" id=16]
+[ext_resource path="res://Audio/SFX_Whoosh_01.wav" type="AudioStream" id=17]
+[ext_resource path="res://Audio/SFX_Whoosh_02.wav" type="AudioStream" id=18]
+[ext_resource path="res://Audio/SFX_Whoosh_03.wav" type="AudioStream" id=19]
+[ext_resource path="res://Audio/SFX_Whoosh_04.wav" type="AudioStream" id=20]
+[ext_resource path="res://Audio/SFX_ExplosionNeg.wav" type="AudioStream" id=21]
+[ext_resource path="res://Spawner.gd" type="Script" id=22]
+[ext_resource path="res://Instruction.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Character/Sprites/Rhyno.png" type="Texture" id=24]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 10.0
 
-[node name="Character" type="Node2D"]
+[node name="Character" type="Node2D" index="0"]
 
 position = Vector2( 500, 48 )
 script = ExtResource( 1 )
@@ -163,13 +173,29 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
+[node name="SFX_Pos" parent="Detector" index="11" instance=ExtResource( 12 )]
+
+Sounds = [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ]
+
+[node name="SFX_Whoosh" parent="Detector" index="12" instance=ExtResource( 12 )]
+
+Sounds = [ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ]
+minPitch = 3.0
+maxPitch = -2.0
+
+[node name="SFX_Neg" parent="Detector" index="13" instance=ExtResource( 12 )]
+
+Sounds = [ ExtResource( 21 ) ]
+minPitch = -4.0
+maxPitch = 2.0
+
 [node name="Spawner" type="Node2D" parent="." index="1"]
 
 editor/display_folded = true
 z_index = 2
-script = ExtResource( 12 )
+script = ExtResource( 22 )
 _sections_unfolded = [ "Material", "Transform", "Z Index" ]
-instruction_type = ExtResource( 13 )
+instruction_type = ExtResource( 23 )
 MX_BPM = 98.0
 Time = 6
 Measure = 8
@@ -188,7 +214,7 @@ _sections_unfolded = [ "Transform" ]
 
 position = Vector2( -150, 407 )
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 14 )
+texture = ExtResource( 24 )
 hframes = 5
 frame = 2
 _sections_unfolded = [ "Animation" ]

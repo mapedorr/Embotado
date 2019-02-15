@@ -75,6 +75,7 @@ func check_press(key_code):
 			checked = true
 			if on_center:
 				# TODO: play something special?
+				$SFX_Pos.playsound()
 				currentInstruction = instruction_area.get_parent()
 				currentInstruction.hide_particle()
 				var ExpPart = Explosion.instance()
@@ -82,6 +83,7 @@ func check_press(key_code):
 				ExpPart.emitting = true
 				instruction_area.get_node("../Sprite").set_scale(Vector2(0, 0))
 			SFX.play()
+			$SFX_Whoosh.playsound()
 			spawner.eval_array[0].get_node("Sprite").modulate = Color("7bccc4")
 			var last_frame = $"../Sprite".frame
 			match key_code:
@@ -101,6 +103,7 @@ func check_press(key_code):
 			# nextInstruction.fail()
 			checked = true
 			spawner.eval_array[0].fail()
+			$SFX_Neg.playsound()
 			spawner.eval_array[0].get_node("Sprite").modulate = Color("b84042")
 			spawner.eval_array[0].get_node("Sprite").set_scale(Vector2(0, 0))
 		$"../".score(on_area, on_center)
@@ -116,6 +119,9 @@ func _on_Area2D_area_exited(area):
 	current_checked = false
 
 	if checked == false:
+		spawner.eval_array[0].fail()
+		$SFX_Neg.playsound()
+		spawner.eval_array[0].get_node("Sprite").set_scale(Vector2(0, 0))
 		$"../".score(on_area, on_center)
 		
 	# Change the letter to evaluate
