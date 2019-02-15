@@ -74,7 +74,7 @@ _sections_unfolded = [ "Angle", "Angular Velocity", "Color", "Emission Shape", "
 custom_solver_bias = 0.0
 radius = 10.0
 
-[node name="Instruction" type="Node2D" index="0"]
+[node name="Instruction" type="Node2D"]
 
 editor/display_folded = true
 z_index = 2
