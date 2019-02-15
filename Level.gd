@@ -87,10 +87,12 @@ func _on_Metronome_timeout():
 			
 			$MusicSystem.stopMx()
 			$MusicSystem.levelChange()
+			print ('cambie para ti')
 			if Level < 3:
+				$MusicSystem.playMx()
 				panda_spawner.change_level()
 				rhyno_spawner.change_level()
-				$MusicSystem.playMx()
+			
 			Level += 1
 
 	metronome_count += 1

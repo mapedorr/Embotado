@@ -15,7 +15,7 @@
 [ext_resource path="res://Audio/MusicSystem.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Sprites/Ground.png" type="Texture" id=14]
 
-[node name="Level" type="Node"]
+[node name="Level" type="Node" index="0"]
 
 script = ExtResource( 1 )
 debug = false

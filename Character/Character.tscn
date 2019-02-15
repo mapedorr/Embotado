@@ -30,7 +30,7 @@
 custom_solver_bias = 0.0
 radius = 10.0
 
-[node name="Character" type="Node2D" index="0"]
+[node name="Character" type="Node2D"]
 
 position = Vector2( 500, 48 )
 script = ExtResource( 1 )
