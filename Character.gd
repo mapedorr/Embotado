@@ -66,6 +66,3 @@ func score(area, center):
 	else:
 		$Sprite.frame = 2
 	$"../".update_score(_score)
-	local_score = _score + local_score
-	#if local_score > 5:
-	#	$Spawner.change_level()

@@ -15,7 +15,7 @@
 [ext_resource path="res://Audio/MusicSystem.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Sprites/Ground.png" type="Texture" id=14]
 
-[node name="Level" type="Node"]
+[node name="Level" type="Node" index="0"]
 
 script = ExtResource( 1 )
 debug = false
@@ -48,10 +48,11 @@ _sections_unfolded = [ "Offset", "Rect", "Z Index" ]
 [node name="Elefantenorrea" type="Sprite" parent="." index="2"]
 
 position = Vector2( 512, 300 )
+z_index = -2
 texture = ExtResource( 7 )
 vframes = 2
 hframes = 2
-_sections_unfolded = [ "Offset", "Transform" ]
+_sections_unfolded = [ "Offset", "Z Index" ]
 
 [node name="Metronome" type="Timer" parent="." index="3"]
 
@@ -88,12 +89,13 @@ _sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
 [node name="Panda" parent="." index="5" instance=ExtResource( 9 )]
 
+editor/display_folded = true
 position = Vector2( 164.828, 48 )
 keys = [ 0, 1, 2, 3 ]
 
 [node name="Detector" parent="Panda" index="0"]
 
-z_index = -2
+z_index = -1
 
 [node name="Sprite" parent="Panda" index="2"]
 
@@ -103,12 +105,13 @@ _sections_unfolded = [ "Animation", "Region" ]
 
 [node name="Rhyno" parent="." index="6" instance=ExtResource( 9 )]
 
+editor/display_folded = true
 position = Vector2( 813.073, 48 )
 keys = [ 4, 5, 6, 7 ]
 
 [node name="Detector" parent="Rhyno" index="0"]
 
-z_index = -2
+z_index = -1
 
 [node name="Sprite" parent="Rhyno" index="2"]
 

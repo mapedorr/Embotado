@@ -28,7 +28,6 @@ keys = null
 
 [node name="Detector" type="Node2D" parent="." index="0"]
 
-editor/display_folded = true
 position = Vector2( 0, 452 )
 z_as_relative = false
 script = ExtResource( 2 )
