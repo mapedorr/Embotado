@@ -25,7 +25,7 @@ _sections_unfolded = [ "Offset", "Rect", "Z Index" ]
 
 [node name="Metronome" type="Timer" parent="." index="1"]
 
-process_mode = 1
+process_mode = 0
 wait_time = 0.01
 one_shot = false
 autostart = false

@@ -10,10 +10,13 @@ var Mute = false
 var index_track = 0
 var music_to_play
 var timeout = waitTime
+var Level
+var is_playing = false 
 
 
 func _ready():
-	pass
+	Level = 0
+	music_to_play = $Intro
 	#randomize()
 	#if (AutoPlay == true):
 		#index_track = randi()%get_child_count()
@@ -22,9 +25,20 @@ func _ready():
 	
 
 func playMx():
-	music_to_play = $Level1
 	music_to_play.playmusic()
 
+func stopMx():
+	music_to_play.stopmusic()
+
+func levelChange():
+	Level += 1
+	if Level == 1:
+		music_to_play = $Level1
+	if Level == 2:
+		music_to_play = $Level2
+	if Level == 3:
+		music_to_play = $Level3
+	
 
 func Mute():
 	if Mute == false:

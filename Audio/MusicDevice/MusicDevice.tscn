@@ -5,7 +5,6 @@
 
 [node name="MusicDevice" type="Node"]
 
-editor/display_folded = true
 script = ExtResource( 1 )
 Mx = null
 Volume = 0.0
@@ -13,18 +12,14 @@ Pitch = 0
 AutoPlay = true
 Bus = "Master"
 
-[node name="AudioDevice" type="AudioStreamPlayer2D" parent="." index="0"]
+[node name="AudioDevice" type="AudioStreamPlayer" parent="." index="0"]
 
-position = Vector2( 1280.52, 721.802 )
-scale = Vector2( 39.8728, 22.3463 )
 stream = null
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
+mix_target = 0
 bus = "Master"
-area_mask = 1
 script = ExtResource( 2 )
 
 

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/MX_Intro.wav-783a7286a10bca8c3f4c4d92c5e7bfc2.sample"
+
+[deps]
+
+source_file="res://Audio/MX_Intro.wav"
+dest_files=[ "res://.import/MX_Intro.wav-783a7286a10bca8c3f4c4d92c5e7bfc2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=48000.0
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

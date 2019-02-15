@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Audio/MusicSystem.gd" type="Script" id=1]
 [ext_resource path="res://Audio/MusicDevice/MusicDevice.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Audio/TVJam_V02.wav" type="AudioStream" id=3]
-[ext_resource path="res://Audio/MX_LvL1.5.wav" type="AudioStream" id=4]
+[ext_resource path="res://Audio/MX_Intro.wav" type="AudioStream" id=3]
+[ext_resource path="res://Audio/MX_Level1.wav" type="AudioStream" id=4]
+[ext_resource path="res://Audio/MX_Level2.wav" type="AudioStream" id=5]
+[ext_resource path="res://Audio/MX_Level3.wav" type="AudioStream" id=6]
 
 [node name="MusicSystem" type="Node"]
 
@@ -11,15 +13,26 @@ script = ExtResource( 1 )
 AutoPlay = false
 waitTime = 120.0
 
-[node name="Level1" parent="." index="0" instance=ExtResource( 2 )]
+[node name="Intro" parent="." index="0" instance=ExtResource( 2 )]
 
 Mx = ExtResource( 3 )
 AutoPlay = false
-Bus = "MX_Bus"
 
-[node name="Level1_Ending" parent="." index="1" instance=ExtResource( 2 )]
+[node name="Level1" parent="." index="1" instance=ExtResource( 2 )]
 
 Mx = ExtResource( 4 )
+AutoPlay = false
+Bus = "MX_Bus"
+
+[node name="Level2" parent="." index="2" instance=ExtResource( 2 )]
+
+Mx = ExtResource( 5 )
+AutoPlay = false
+Bus = "MX_Bus"
+
+[node name="Level3" parent="." index="3" instance=ExtResource( 2 )]
+
+Mx = ExtResource( 6 )
 AutoPlay = false
 Bus = "MX_Bus"
 

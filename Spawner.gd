@@ -15,7 +15,7 @@ export(Array, int, FLAGS, "1,2,3,4,5,6") var Level3
 var eval_array
 var dbg
 var notes_array
-var currentLevel = 1
+var currentLevel = 0
 
 func _ready():
 	notes = Level1
@@ -26,10 +26,13 @@ func _ready():
 	notes_array = [false, false, false, false, false, false]
 
 func change_level():
-	print ("Level"+String(currentLevel))
 	currentLevel += 1
 	#var level_array = "Level"+String(currentLevel)
-	#notes = level_array 
+	if currentLevel == 1:
+		notes = Level2 
+	if currentLevel == 2:
+		notes = Level3 
+	
 
 func setup_notes_array():
 	# Clear the notes

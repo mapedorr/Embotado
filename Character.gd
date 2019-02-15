@@ -67,6 +67,5 @@ func score(area, center):
 		_score = 2 if center else 1
 	$"../".update_score(_score)
 	local_score = _score + local_score
-	print(local_score)
 	#if local_score > 5:
 	#	$Spawner.change_level()
