@@ -1,6 +1,5 @@
 extends Node2D
 
-var local_score = 0
 
 export(Array, int, "W", "A", "S", "D") var keys = [
 	KEY_W,
@@ -51,7 +50,7 @@ const LETTERS = {
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
-	print(keys)
+	pass
 
 func get_letter(code):
 	return LETTERS[keys[code]].character
@@ -66,6 +65,3 @@ func score(area, center):
 	if area or center:
 		_score = 2 if center else 1
 	$"../".update_score(_score)
-	local_score = _score + local_score
-	#if local_score > 5:
-	#	$Spawner.change_level()

@@ -1,7 +1,8 @@
 extends Node2D
 
-export (int) var center_threshold = 6
 onready var Explosion = preload("res://Explosion.tscn")
+
+export (int) var center_threshold = 6
 
 var on_area
 var spawner
@@ -9,11 +10,15 @@ var d_goal
 var d_input
 var current_letter
 var current_checked
+var checked
 var is_playing = false
 var SFX
 var dbg
 var instruction_area
 var on_center
+var currentInstruction
+var nextInstruction
+var existance
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
@@ -26,7 +31,13 @@ func _ready():
 	dbg.label("Goal", "")
 	dbg.label("Input", "")
 
+func printcacorradas():
+	print ('tengos ida')
+
 func _process(delta):
+	if existance == true:
+		print ('aqui toy')
+	
 	if on_area:
 		# check if the Instruction is centered
 		$Center.points[1] = self.to_local(instruction_area.global_position)
@@ -65,13 +76,18 @@ func play_music():
 func check_press(key_code):
 	if Input.is_key_pressed(key_code) and not current_checked:
 		current_checked = true
+		
 		if on_area:
+			checked = true
 			if on_center:
+				
 				# TODO: play something special?
+				currentInstruction = nextInstruction
+				currentInstruction.hide_particle()
 				var ExpPart = Explosion.instance()
 				add_child(ExpPart)
 				ExpPart.emitting = true
-				instruction_area.get_node("../Sprite").set_scale(Vector2(0.4, 0.4))
+				instruction_area.get_node("../Sprite").set_scale(Vector2(0, 0))
 			SFX.play()
 			spawner.eval_array[0].get_node("Sprite").modulate = Color("7bccc4")
 			var last_frame = $"../Sprite".frame
@@ -90,10 +106,14 @@ func check_press(key_code):
 				$"../Sprite".flip_h = false
 			$Sprite.frame
 		else:
+			nextInstruction.fail()
+			checked = true
 			spawner.eval_array[0].get_node("Sprite").modulate = Color("b84042")
+			spawner.eval_array[0].get_node("Sprite").set_scale(Vector2(0, 0))
 		$"../".score(on_area, on_center)
 
 func _on_Area2D_area_entered(area):
+	
 	instruction_area = area
 	on_area = true
 
@@ -101,6 +121,10 @@ func _on_Area2D_area_exited(area):
 	instruction_area = null
 	on_area = false
 	current_checked = false
+
+	if checked == false:
+		$"../".score(on_area, on_center)
+		
 	# Change the letter to evaluate
 	change_letter()
 

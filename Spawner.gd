@@ -14,16 +14,22 @@ export(Array, int, FLAGS, "1,2,3,4,5,6") var Level3
 
 var eval_array
 var dbg
+var detector
 var notes_array
 var currentLevel = 0
+var existingNote
 
 func _ready():
 	notes = Level1
 	# Called when the node is added to the scene for the first time.
 	barTime = ((60 * 1) / MX_BPM) / 2
 	eval_array = []
+	detector = $"../Detector"
 	dbg = $"../../Debug"
 	notes_array = [false, false, false, false, false, false]
+
+func _process(delta):
+	pass
 
 func change_level():
 	currentLevel += 1
@@ -39,7 +45,7 @@ func setup_notes_array():
 	notes_array = [false, false, false, false, false, false]
 	
 	var random_pattern = randi() % notes.size()
-	var fixed_pattern = 0
+	var fixed_pattern = 2
 
 	# Check if there's a note for the current beat
 	# Casiila: 1 2 3 4  5  6
@@ -80,8 +86,11 @@ func setup_notes_array():
 func create_note(index):
 	if notes_array[index - 1]:
 		create_instruction()
+		
 
 func create_instruction():
+	
+	
 	var instruction_i = instruction_type.instance()
 	instruction_i.position.x = self.position.x
 	instruction_i.position.y = self.position.y
@@ -98,6 +107,9 @@ func create_instruction():
 	eval_array.append(instruction_i)
 	get_parent().add_child(instruction_i)
 	instruction_i.appear()
+	detector.nextInstruction = instruction_i
+	
+		
 
 func notes_set(new_value):
 	notes = new_value

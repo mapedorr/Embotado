@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Instruction.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/tile.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/MeteorFire.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Meteor.png" type="Texture" id=3]
 
 [sub_resource type="Gradient" id=1]
 
-offsets = PoolRealArray( 0, 0.540179, 1 )
-colors = PoolColorArray( 0.325573, 0.212402, 0.679688, 1, 0.629913, 0.292969, 1, 1, 0.996094, 0.400772, 0.400772, 1 )
+offsets = PoolRealArray( 0.00591716, 0.390533, 0.544379, 0.698225, 1 )
+colors = PoolColorArray( 0.585938, 0.0205994, 0, 0.265176, 0.5983, 0.031308, 0.0116141, 0.297476, 0.867188, 0.264221, 0.264221, 1, 0.753906, 0.474251, 0.203201, 1, 0.602234, 0.8125, 0.139648, 0 )
 
 [sub_resource type="GradientTexture" id=2]
 
@@ -19,7 +20,7 @@ width = 2048
 min_value = 0.0
 max_value = 1.0
 bake_resolution = 100
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.943192, 0 ), -1.45543, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 0.918945 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -1.45543, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=4]
 
@@ -31,21 +32,21 @@ curve = SubResource( 3 )
 
 render_priority = 0
 trail_divisor = 1
-emission_shape = 2
-emission_box_extents = Vector3( 5, 15, 1 )
+emission_shape = 1
+emission_sphere_radius = 10.0
 flag_align_y = false
 flag_rotate_y = false
 flag_disable_z = true
-spread = 0.0
+spread = 10.0
 flatness = 0.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 25.0
+gravity = Vector3( -1, 0, 0 )
+initial_velocity = 0.0
 initial_velocity_random = 0.0
-angular_velocity = 200.0
-angular_velocity_random = 1.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-linear_accel = 20.0
+linear_accel = 0.0
 linear_accel_random = 0.0
 radial_accel = 0.0
 radial_accel_random = 0.0
@@ -55,7 +56,7 @@ damping = 0.0
 damping_random = 0.0
 angle = 25.0
 angle_random = 0.0
-scale = 15.0
+scale = 0.25
 scale_random = 0.0
 scale_curve = SubResource( 4 )
 color_ramp = SubResource( 2 )
@@ -66,18 +67,22 @@ anim_speed_random = 0.0
 anim_offset = 0.0
 anim_offset_random = 0.0
 anim_loop = false
-_sections_unfolded = [ "Angle", "Angular Velocity", "Color", "Emission Shape", "Gravity", "Initial Velocity", "Linear Accel", "Scale", "Spread", "Trail" ]
+_sections_unfolded = [ "Angle", "Angular Velocity", "Color", "Emission Shape", "Gravity", "Initial Velocity", "Linear Accel", "Scale", "Spread" ]
 
 [sub_resource type="CircleShape2D" id=6]
 
 custom_solver_bias = 0.0
 radius = 10.0
 
-[node name="Instruction" type="Node2D" index="0"]
+[node name="Instruction" type="Node2D"]
 
+editor/display_folded = true
 z_index = 2
 script = ExtResource( 1 )
 _sections_unfolded = [ "Z Index" ]
+__meta__ = {
+"_edit_group_": true
+}
 MX_BPM = 98.0
 
 [node name="Tween" type="Tween" parent="." index="0"]
@@ -91,33 +96,33 @@ playback/speed = 1.0
 
 [node name="Particles2D" type="Particles2D" parent="." index="1"]
 
-position = Vector2( 1.40192, -26.6365 )
+position = Vector2( 1.41454, 5.18583 )
 rotation = -1.5708
-z_index = 2
+z_index = -1
 z_as_relative = false
 emitting = true
-amount = 100
-lifetime = 2.0
+amount = 200
+lifetime = 1.9
 one_shot = false
 preprocess = 0.0
-speed_scale = 2.0
+speed_scale = 1.5
 explosiveness = 0.0
 randomness = 0.0
 fixed_fps = 0
 fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
-local_coords = true
+local_coords = false
 draw_order = 0
 process_material = SubResource( 5 )
-texture = null
+texture = ExtResource( 2 )
 normal_map = null
 h_frames = 1
 v_frames = 1
-_sections_unfolded = [ "Drawing", "Process Material", "Time", "Transform", "Z Index" ]
+_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Transform", "Z Index" ]
 
 [node name="Area2D" type="Area2D" parent="." index="2"]
 
-editor/display_folded = true
+visible = false
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -137,8 +142,10 @@ _sections_unfolded = [ "Transform" ]
 
 scale = Vector2( 0.5, 0.5 )
 z_index = 2
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
+
+[connection signal="tree_entered" from="." to="." method="_on_Instruction_tree_entered"]
 
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
 

@@ -1,4 +1,6 @@
 extends Node2D
+onready var Explosion_Fail = preload("res://Explosion_Fail.tscn")
+
 
 export(float) var MX_BPM
 
@@ -6,13 +8,14 @@ var tween_duration
 
 var movement_target
 var letter
+var detector
 
 const TYPES = ["A", "S", "D", "F", "H", "J", "K", "L"]
 const SPRITES_PATH = "res://Sprites/tile%s.png"
 
 # Called when the node is added to the scene for the first time.
 func _ready():
-
+	
 	
 	tween_duration = (60*12)/MX_BPM
 	
@@ -40,5 +43,21 @@ func appear():
 	)
 	$Tween.start()
 
+func fail():
+	var ExpPart = Explosion_Fail.instance()
+	add_child(ExpPart)
+	ExpPart.emitting = true
+	hide_particle()
+
+func hide_particle():
+	$Particles2D.visible = false
+#func center():
+	#$Particles2D.visible = false
+
+
 func _on_Tween_tween_completed(object, key):
 	self.queue_free()
+
+func _on_Instruction_tree_entered():
+	print ('apareci pirobos')
+
