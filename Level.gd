@@ -15,11 +15,10 @@ var rhyno_spawner
 var Level
 var goal
 var count = true
+var game_ended = false
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
-	
-
 	$Debug.visible = debug
 	Level = 0
 	goal = 15
@@ -30,26 +29,27 @@ func _ready():
 	$Metronome.wait_time = barTime
 	$Metronome.start()
 	update_score(score)
-
 	
+	$AnimationPlayer.play("FirstTime")
 
 func setup_metronome():
 	$Metronome.wait_time = barTime
 
 func update_score(new_score):
+	if game_ended:
+		return
 	score += new_score
 	score = max(score, 0)
 	$Score.text = "Score: %s" % score
 
 func _on_Metronome_timeout():
-	
-	
 	if metronome_count > metronome_measure:
 		count = true
 		metronome_count = 1
 		if is_playing == false:
-			$MusicSystem.playMx()
 			is_playing = true
+			$MusicSystem.playMx()
+			$AnimationPlayer.play("Levitation")
 		if bar_count == 9:
 			Level = 1
 			$MusicSystem.stopMx()
@@ -64,14 +64,25 @@ func _on_Metronome_timeout():
 		panda_spawner.create_note(metronome_count)
 		rhyno_spawner.create_note(metronome_count)
 		if score > goal:
-
 			if Level == 1:
+				$Elefantenorrea.frame = Level
 				goal = 45
+				$AnimationPlayer.play("Evolve")
+				$AnimationPlayer.queue("Levitation")
 			if Level == 2:
+				$Elefantenorrea.frame = Level
 				goal = 70
-			
+				$AnimationPlayer.play("Evolve")
+				$AnimationPlayer.queue("Levitation")
 			if Level ==3:
 				$MusicSystem.stopMx()
+				# The game is over, stop the metronome and show the freed elefante
+				$Metronome.stop()
+				$Elefantenorrea.frame = Level
+				$AnimationPlayer.play("Evolve")
+				$AnimationPlayer.queue("Freed")
+				$Score.text = "You freed Elefantenorrea!\nYou rock!"
+				game_ended = true
 			
 			$MusicSystem.stopMx()
 			$MusicSystem.levelChange()
@@ -80,11 +91,6 @@ func _on_Metronome_timeout():
 				rhyno_spawner.change_level()
 				$MusicSystem.playMx()
 			Level += 1
-			
-			
-			 
-		
-		
 
 	metronome_count += 1
 	if count == true:

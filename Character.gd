@@ -49,8 +49,7 @@ const LETTERS = {
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
+	$Sprite.frame = 2
 
 func get_letter(code):
 	return LETTERS[keys[code]].character
@@ -64,4 +63,9 @@ func score(area, center):
 	var _score = -2
 	if area or center:
 		_score = 2 if center else 1
+	else:
+		$Sprite.frame = 2
 	$"../".update_score(_score)
+	local_score = _score + local_score
+	#if local_score > 5:
+	#	$Spawner.change_level()
