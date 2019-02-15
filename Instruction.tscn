@@ -74,7 +74,7 @@ _sections_unfolded = [ "Angle", "Angular Velocity", "Color", "Emission Shape", "
 custom_solver_bias = 0.0
 radius = 10.0
 
-[node name="Instruction" type="Node2D"]
+[node name="Instruction" type="Node2D" index="0"]
 
 editor/display_folded = true
 z_index = 2
@@ -144,8 +144,6 @@ scale = Vector2( 0.5, 0.5 )
 z_index = 2
 texture = ExtResource( 3 )
 _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
-
-[connection signal="tree_entered" from="." to="." method="_on_Instruction_tree_entered"]
 
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
 

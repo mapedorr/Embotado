@@ -26,7 +26,6 @@ func initialize(init_data):
 	self.visible = false
 	movement_target = init_data.target
 	letter = init_data.letter
-#	tween_duration = init_data.tween_duration
 	
 	# Assign the proper texture based on the assigned letter
 	$Sprite.texture = load(SPRITES_PATH % letter)
@@ -51,13 +50,7 @@ func fail():
 
 func hide_particle():
 	$Particles2D.visible = false
-#func center():
-	#$Particles2D.visible = false
-
 
 func _on_Tween_tween_completed(object, key):
 	self.queue_free()
-
-func _on_Instruction_tree_entered():
-	print ('apareci pirobos')
 

@@ -89,8 +89,6 @@ func create_note(index):
 		
 
 func create_instruction():
-	
-	
 	var instruction_i = instruction_type.instance()
 	instruction_i.position.x = self.position.x
 	instruction_i.position.y = self.position.y
@@ -108,8 +106,6 @@ func create_instruction():
 	get_parent().add_child(instruction_i)
 	instruction_i.appear()
 	detector.nextInstruction = instruction_i
-	
-		
 
 func notes_set(new_value):
 	notes = new_value

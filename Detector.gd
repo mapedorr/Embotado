@@ -31,13 +31,7 @@ func _ready():
 	dbg.label("Goal", "")
 	dbg.label("Input", "")
 
-func printcacorradas():
-	print ('tengos ida')
-
 func _process(delta):
-	if existance == true:
-		print ('aqui toy')
-	
 	if on_area:
 		# check if the Instruction is centered
 		$Center.points[1] = self.to_local(instruction_area.global_position)
@@ -80,9 +74,8 @@ func check_press(key_code):
 		if on_area:
 			checked = true
 			if on_center:
-				
 				# TODO: play something special?
-				currentInstruction = nextInstruction
+				currentInstruction = instruction_area.get_parent()
 				currentInstruction.hide_particle()
 				var ExpPart = Explosion.instance()
 				add_child(ExpPart)
@@ -104,16 +97,16 @@ func check_press(key_code):
 				$"../Sprite".flip_h = true
 			else:
 				$"../Sprite".flip_h = false
-			$Sprite.frame
 		else:
-			nextInstruction.fail()
+			# nextInstruction.fail()
 			checked = true
+			spawner.eval_array[0].fail()
 			spawner.eval_array[0].get_node("Sprite").modulate = Color("b84042")
 			spawner.eval_array[0].get_node("Sprite").set_scale(Vector2(0, 0))
 		$"../".score(on_area, on_center)
 
 func _on_Area2D_area_entered(area):
-	
+	checked = false
 	instruction_area = area
 	on_area = true
 
