@@ -15,216 +15,142 @@
 [ext_resource path="res://Audio/MusicSystem.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Sprites/Ground.png" type="Texture" id=14]
 
-[node name="Level" type="Node" index="0"]
-
+[node name="Level" type="Node"]
 script = ExtResource( 1 )
-debug = false
 MX_BPM = 98.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
-
-root_node = NodePath("..")
-autoplay = ""
-playback_process_mode = 1
-playback_default_blend_time = 0.0
-playback_speed = 1.0
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Evolve = ExtResource( 2 )
 anims/FirstTime = ExtResource( 3 )
 anims/Freed = ExtResource( 4 )
 anims/Levitation = ExtResource( 5 )
-blend_times = [  ]
-_sections_unfolded = [ "Playback Options" ]
 
-[node name="Background" type="Sprite" parent="." index="1"]
-
+[node name="Background" type="Sprite" parent="."]
 position = Vector2( -30, 0 )
 scale = Vector2( 0.5, 0.5 )
 z_index = -3
 z_as_relative = false
 texture = ExtResource( 6 )
 centered = false
-_sections_unfolded = [ "Offset", "Rect", "Z Index" ]
 
-[node name="Elefantenorrea" type="Sprite" parent="." index="2"]
-
+[node name="Elefantenorrea" type="Sprite" parent="."]
 position = Vector2( 512, 300 )
 z_index = -2
 texture = ExtResource( 7 )
 vframes = 2
 hframes = 2
-_sections_unfolded = [ "Offset", "Z Index" ]
 
-[node name="Metronome" type="Timer" parent="." index="3"]
-
+[node name="Metronome" type="Timer" parent="."]
 process_mode = 0
 wait_time = 0.01
-one_shot = false
-autostart = false
 
-[node name="Score" type="Label" parent="." index="4"]
-
+[node name="Score" type="Label" parent="."]
 anchor_left = 0.5
-anchor_top = 0.0
 anchor_right = 0.5
-anchor_bottom = 0.0
 margin_left = -406.0
 margin_top = 20.0
 margin_right = 416.0
 margin_bottom = 97.0
 rect_pivot_offset = Vector2( 181.976, 38.9753 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 8 )
 custom_colors/font_color = Color( 0.0156863, 0.266667, 0.0823529, 1 )
 text = "SCORE: 00"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
-[node name="Panda" parent="." index="5" instance=ExtResource( 9 )]
-
+[node name="Panda" parent="." instance=ExtResource( 9 )]
 position = Vector2( 164.828, 48 )
 keys = [ 0, 1, 2, 3 ]
 
 [node name="Detector" parent="Panda" index="0"]
-
 z_index = -1
 
-[node name="Sprite" parent="Panda" index="2"]
+[node name="SFX_Pos" parent="Panda/Detector" index="11"]
+ooooooooooooooooooooooo = ""
 
+[node name="SFX_Whoosh" parent="Panda/Detector" index="12"]
+ooooooooooooooooooooooo = ""
+
+[node name="SFX_Neg" parent="Panda/Detector" index="13"]
+ooooooooooooooooooooooo = ""
+
+[node name="Spawner" parent="Panda" index="1"]
+barTime = 0.0
+
+[node name="Sprite" parent="Panda" index="2"]
 position = Vector2( 148, 407 )
 texture = ExtResource( 10 )
-_sections_unfolded = [ "Animation", "Region" ]
 
-[node name="Rhyno" parent="." index="6" instance=ExtResource( 9 )]
-
+[node name="Rhyno" parent="." instance=ExtResource( 9 )]
 editor/display_folded = true
 position = Vector2( 813.073, 48 )
 keys = [ 4, 5, 6, 7 ]
 
 [node name="Detector" parent="Rhyno" index="0"]
-
 z_index = -1
 
+[node name="SFX_Pos" parent="Rhyno/Detector" index="11"]
+ooooooooooooooooooooooo = ""
+
+[node name="SFX_Whoosh" parent="Rhyno/Detector" index="12"]
+ooooooooooooooooooooooo = ""
+
+[node name="Spawner" parent="Rhyno" index="1"]
+barTime = 0.0
+
 [node name="Sprite" parent="Rhyno" index="2"]
-
 frame = 0
-_sections_unfolded = [ "Animation", "Region" ]
 
-[node name="Debug" type="Control" parent="." index="7"]
-
+[node name="Debug" type="Control" parent="."]
 editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 script = ExtResource( 11 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Goal" type="Label" parent="Debug" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Goal" type="Label" parent="Debug"]
 margin_left = 180.0
 margin_top = 290.0
 margin_right = 430.0
 margin_bottom = 310.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 12 )
 text = "Goal placeholder"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
 
-[node name="Input" type="Label" parent="Debug" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Input" type="Label" parent="Debug"]
 margin_left = 110.0
 margin_top = 370.0
 margin_right = 360.0
 margin_bottom = 390.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 12 )
 text = "Input placeholder"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
 
-[node name="Symbol" type="Label" parent="Debug" index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Symbol" type="Label" parent="Debug"]
 margin_left = 556.0
 margin_top = 446.0
 margin_right = 806.0
 margin_bottom = 466.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 12 )
 text = "Input placeholder"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
 
-[node name="MusicSystem" parent="." index="8" instance=ExtResource( 13 )]
+[node name="MusicSystem" parent="." instance=ExtResource( 13 )]
 
-[node name="Ground" type="Sprite" parent="." index="9"]
-
+[node name="Ground" type="Sprite" parent="."]
 position = Vector2( -30, 560 )
 scale = Vector2( 0.5, 0.5 )
 z_as_relative = false
 texture = ExtResource( 14 )
 centered = false
-_sections_unfolded = [ "Offset", "Rect", "Transform", "Z Index" ]
 
-[node name="Light" type="Sprite" parent="." index="10"]
-
+[node name="Light" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 512, 300 )
 z_index = 5
 texture = ExtResource( 6 )
-_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
 [connection signal="timeout" from="Metronome" to="." method="_on_Metronome_timeout"]
 
-
 [editable path="Panda"]
+
 [editable path="Rhyno"]
